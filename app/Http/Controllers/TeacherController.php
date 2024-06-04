@@ -12,9 +12,8 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        $teachers = Teacher::select('id', 'full_name', 'profession', 'grade')->get();
-        dd(csrf_token());
-//        return view('teachers.index', compact('teachers'));
+        $teachers = Teacher::select('id', 'full_name', 'profession', 'grade')->orderBy('id', 'DESC')->get();
+        return view('teachers.index', compact('teachers'));
     }
 
     /**
@@ -30,15 +29,14 @@ class TeacherController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
-//        $teacher = new Teacher();
-//        $teacher->full_name = $request->full_name;
-//        $teacher->profession = $request->profession;
-//        $teacher->grade = $request->grade;
-//        $teacher->phone = $request->phone;
-//        $teacher->save();
-//        dd('El profesor fue registrado correctamente');
-//        return view('teachers.create', ['teachers' => null , 'message' => 'El profesor fue registrado correctamente']);
+        $teacher = new Teacher();
+        $teacher->full_name = $request->full_name;
+        $teacher->profession = $request->profession;
+        $teacher->grade = $request->grade;
+        $teacher->phone = $request->phone;
+        $teacher->save();
+
+        return redirect()->action([TeacherController::class, 'index']);
     }
 
     /**
@@ -56,7 +54,7 @@ class TeacherController extends Controller
     public function edit(string $id)
     {
         $teacher = Teacher::find($id);
-        return view('teachers.update', ['teacher' => $teacher]);
+        return view('teachers.edit', ['teacher' => $teacher]);
     }
 
     /**
@@ -70,6 +68,7 @@ class TeacherController extends Controller
         $teacher->grade = $request->grade;
         $teacher->phone = $request->phone;
         $teacher->save();
+        return redirect()->action([TeacherController::class, 'index']);
 
     }
 

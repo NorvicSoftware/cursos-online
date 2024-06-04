@@ -20,7 +20,7 @@ class StudentFactory extends Factory
             'code' => $this->faker->postcode(),
             'full_name' => $this->faker->firstName() . ' ' . $this->faker->lastName(),
             'age' => $this->faker->numberBetween(18, 30),
-            'address' => $this->faker->country()
+            'address' => $this->faker->ima
 
 
         ];

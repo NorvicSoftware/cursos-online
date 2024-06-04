@@ -50,11 +50,11 @@ Route::get('/', function () {
 });
 
 Route::get('teachers', [TeacherController::class, 'index']);
-Route::get('teachers/{teacherId}', [TeacherController::class, 'show']);
-Route::get('teachers/form/create', [TeacherController::class, 'create']);
-Route::post('teachers/form/store', [TeacherController::class, 'store']);
-Route::get('teachers/form/edit/{teacherId}', [TeacherController::class, 'edit']);
-Route::put('teachers/form/update/{teacherId}', [TeacherController::class, 'update']);
+//Route::get('teachers/{teacherId}', [TeacherController::class, 'show']);
+Route::get('teachers/create', [TeacherController::class, 'create']);
+Route::post('teachers/store', [TeacherController::class, 'store'])->name('teachers.store');
+Route::get('teachers/edit/{teacherId}', [TeacherController::class, 'edit'])->name('teachers.edit');;
+Route::put('teachers/update/{teacherId}', [TeacherController::class, 'update'])->name('teachers.update');;
 Route::delete('teachers/form/delete/{teacherId}', [TeacherController::class, 'destroy']);
 
 Route::get('students', [StudentController::class, 'index']);
