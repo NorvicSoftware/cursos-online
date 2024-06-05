@@ -1,22 +1,18 @@
-<html>
-<header>
-    <title>Profesores</title>
-</header>
-<body>
-<h1>LISTADO DE PROFESORES</h1>
-{{--<br>--}}
-<a href="/teachers/create">Nuevo Profesor</a>
-<br>
-<table>
-    <thead>
+@extends('layout')
+@section('header') PROFESORES @endsection
+@section('content')
+    <h1>LISTADO DE PROFESORES</h1>
+    <a href="/teachers/create">Nuevo Profesor</a>
+    <table>
+        <thead>
         <tr>
             <th>Profesor</th>
             <th>Profesión</th>
             <th>Grado Academico</th>
             <th>Acción</th>
         </tr>
-    </thead>
-    <tbody>
+        </thead>
+        <tbody>
         @foreach($teachers as $teacher)
             <tr>
                 <td>{{ $teacher->full_name }}</td>
@@ -27,7 +23,7 @@
                 </td>
             </tr>
         @endforeach
-    </tbody>
-</table>
-</body>
-</html>
+        </tbody>
+    </table>
+@endsection
+

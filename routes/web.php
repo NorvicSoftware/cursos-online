@@ -49,7 +49,7 @@ Route::get('/', function () {
     return view('welcome', ['students' => $students]);
 });
 
-Route::get('teachers', [TeacherController::class, 'index']);
+Route::get('teachers', [TeacherController::class, 'index'])->name('teachers.index');
 //Route::get('teachers/{teacherId}', [TeacherController::class, 'show']);
 Route::get('teachers/create', [TeacherController::class, 'create']);
 Route::post('teachers/store', [TeacherController::class, 'store'])->name('teachers.store');
@@ -57,7 +57,7 @@ Route::get('teachers/edit/{teacherId}', [TeacherController::class, 'edit'])->nam
 Route::put('teachers/update/{teacherId}', [TeacherController::class, 'update'])->name('teachers.update');;
 Route::delete('teachers/form/delete/{teacherId}', [TeacherController::class, 'destroy']);
 
-Route::get('students', [StudentController::class, 'index']);
+Route::get('students', [StudentController::class, 'index'])->name('students.index');
 Route::get('students/{studentId}', [StudentController::class, 'show']);
 Route::get('students/form/create', [StudentController::class, 'create']);
 Route::post('students/form/store', [StudentController::class, 'store']);
