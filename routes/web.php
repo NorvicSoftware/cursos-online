@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\Reports\TeacherCourseController;
 
 Route::get('/', function () {
 
@@ -49,6 +50,10 @@ Route::get('/', function () {
     return view('welcome', ['students' => $students]);
 });
 
+Route::get('reports/teachers', [TeacherCourseController::class, 'index'])->name('reports.teachers.index');
+Route::get('reports/teachers/pdf', [TeacherCourseController::class, 'report'])->name('reports.teachers.pdf');
+Route::get('reports/teachers/excel', [TeacherCourseController::class, 'excel'])->name('reports.teachers.excel');
+
 Route::get('teachers', [TeacherController::class, 'index'])->name('teachers.index');
 //Route::get('teachers/{teacherId}', [TeacherController::class, 'show']);
 Route::get('teachers/create', [TeacherController::class, 'create']);
@@ -58,9 +63,9 @@ Route::put('teachers/update/{teacherId}', [TeacherController::class, 'update'])-
 Route::delete('teachers/form/delete/{teacherId}', [TeacherController::class, 'destroy']);
 
 Route::get('students', [StudentController::class, 'index'])->name('students.index');
-Route::get('students/{studentId}', [StudentController::class, 'show']);
-Route::get('students/form/create', [StudentController::class, 'create']);
-Route::post('students/form/store', [StudentController::class, 'store']);
+// Route::get('students/{studentId}', [StudentController::class, 'show']);
+Route::get('students/create', [StudentController::class, 'create']);
+Route::post('students/store', [StudentController::class, 'store'])->name('students.store');
 Route::get('students/form/edit/{studentId}', [StudentController::class, 'edit']);
 Route::put('students/form/update/{studentId}', [StudentController::class, 'update']);
 Route::delete('students/form/delete/{studentId}', [StudentController::class, 'destroy']);

@@ -21,7 +21,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        return view('students. create');
+        return view('students.create');
     }
 
     /**
@@ -29,9 +29,17 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            // 'code' => 'required',
+            'full_name' => 'required',
+            'age' => 'required|numeric',
+            'phone' => 'numeric|nullable'
+
+        ]);
+
         $student = new Student();
-        $student->code = $request->code;
-        $student->full_name = $request->full_name;
+        $student->code = "122312";
+        $student->full_name = ucfirst(strtolower($request->full_name));
         $student->age = $request->age;
         $student->phone = $request->phone;
         $student->address = $request->address;

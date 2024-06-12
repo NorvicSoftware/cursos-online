@@ -1,0 +1,3 @@
+<footer>
+    <p>TODOS LOS DERECHOS RESERVADOS --ACTUALIZACION I-- 2024</p>
+</footer>

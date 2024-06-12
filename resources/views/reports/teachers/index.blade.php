@@ -6,18 +6,16 @@
             <x-menu />
         </div>
         <main>
-            <h1>LISTADO DE PROFESORES</h1>
-            <div class="actions">
-                <a class="button-link" href="/teachers/create">Nuevo Profesor</a>
-            </div>
-
+            <h1>REPORTES DE PROFESORES CON MATERIAS</h1>
+            <a href="{{ route('reports.teachers.pdf') }}" target="blank">IMPRIMIR PDF</a>
+            <a href="{{ route('reports.teachers.excel') }}">IMPRIMIR EXCEL</a>
             <table>
                 <thead>
                 <tr>
                     <th>Profesor</th>
                     <th>Profesión</th>
                     <th>Grado Academico</th>
-                    <th>Acción</th>
+                    <th>Materias</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -27,7 +25,9 @@
                         <td>{{ $teacher->profession }}</td>
                         <td>{{ $teacher->grade }}</td>
                         <td>
-                            <a href="{{route('teachers.edit', $teacher->id)}}">Editar</a>
+                            @foreach ( $teacher->courses as $course )
+                                {{ $course->name }}<br>
+                            @endforeach
                         </td>
                     </tr>
                 @endforeach
